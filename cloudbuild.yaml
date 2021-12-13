@@ -1,0 +1,13 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/buoyant-mason-318320/bootdecker', '-f', 'src/docker/Dockerfile', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/buoyant-mason-318320/bootdecker']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'vehicle-service', '--image', 'gcr.io/buoyant-mason-318320/bootdecker', '--region', 'us-central1']
+images:
+  - gcr.io/buoyant-mason-318320/bootdecker

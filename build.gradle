@@ -10,11 +10,25 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
+	maven {
+		url "https://plugins.gradle.org/m2/"
+	}
 }
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok:1.18.18'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	compileOnly("org.projectlombok:lombok:1.16.10")
+
+
+//	implementation platform('com.google.cloud:libraries-bom:24.0.0')
+//	implementation 'com.google.cloud:google-cloud-bigquery'
+
+//	implementation "org.springframework.cloud:spring-cloud-gcp-starter-pubsub:1.2.5.RELEASE"
+//	implementation "org.springframework.integration:spring-integration-core"
 }
 
 test {
